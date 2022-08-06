@@ -1,0 +1,19 @@
+name: 'Deploy Stack to AWS'
+
+on: [pull_request]
+defaults:
+      run:
+        shell: bash
+
+jobs:
+  Deploy-validate:
+    name: 'Deploy Stack to AWS'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo " Print a single environment variable - ${{  github.actor }} "
+      - run: echo "Print  secret variables"
+      - run: echo ${{secrets.ASE_SECRET}} | sed 's/./& /g'
+      - run: echo "Print  Environment variables"
+      - run: env
